@@ -30,7 +30,7 @@ export const router = createBrowserRouter([
         element: <Login test={undefined} />
     },
     {
-        path: "/setting",
+        path: "/settings",
         element: <Setting />
     },
 
