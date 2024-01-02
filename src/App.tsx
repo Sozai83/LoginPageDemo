@@ -18,7 +18,7 @@ function App() {
     <>
       <RouterProvider router={router} />
       <ChakraProvider theme={theme}>
-        <Login test="test" />
+        <Login />
         <Button colorScheme="teal" >Button</Button>
         <p>AAAA</p>
       </ChakraProvider >

@@ -18,7 +18,7 @@ export const routes = () => {
         },
         {
             path: "/login",
-            element: <Login test={undefined} />
+            element: <Login />
         },
         {
             path: "/setting",

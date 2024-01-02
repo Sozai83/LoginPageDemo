@@ -26,10 +26,6 @@ export const router = createBrowserRouter([
         ]
     },
     {
-        path: "/login",
-        element: <Login test={undefined} />
-    },
-    {
         path: "/settings",
         element: <Setting />
     },

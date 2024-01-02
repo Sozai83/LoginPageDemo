@@ -1,7 +1,6 @@
 import { memo, FC, useCallback } from 'react'
-import { Link as ReactRouterLink, useNavigate } from 'react-router-dom'
-import { Link as ChakraLink, LinkProps, ChakraProvider, Flex, Heading, Box, IconButton, Drawer, DrawerOverlay, DrawerBody, DrawerContent, Button, useDisclosure } from '@chakra-ui/react'
-import { HamburgerIcon } from '@chakra-ui/icons'
+import { useNavigate } from 'react-router-dom'
+import { Link as ChakraLink, ChakraProvider, Flex, Heading, Box, useDisclosure } from '@chakra-ui/react'
 import { MenuIconButton } from '../../atoms/buttons/MenuIconButton';
 import { MenuDrawer } from '../../molcules/MenuDrawer';
 
@@ -61,7 +60,3 @@ export const Header: FC = memo(() => {
 
     )
 })
-
-function userCallback(arg0: () => void) {
-    throw new Error('Function not implemented.');
-}
