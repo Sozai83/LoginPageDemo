@@ -1,15 +1,34 @@
-import { Box, Button, Center, Image, Spinner, Stack, Text, Wrap, WrapItem } from '@chakra-ui/react';
-import { memo, FC, useEffect } from 'react';
+import { Box, Button, Center, FormControl, FormLabel, Image, Input, Spinner, Stack, Text, Wrap, WrapItem } from '@chakra-ui/react';
+import { memo, FC, useEffect, useCallback, useState } from 'react';
 import { UserCard } from '../organisms/user/UserCard';
 import { useAllUsers } from '../../hooks/userAllUsers';
+import {
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    ModalBody,
+    ModalCloseButton,
+    useDisclosure,
+
+} from '@chakra-ui/react';
+import { UserDetail } from '../organisms/user/UserDetail'
+import { user } from '../../types/api/user';
 
 
 
 export const UserManagement = memo(() => {
 
     const { getUsers, loading, users } = useAllUsers();
-
     useEffect(() => getUsers(), [])
+
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    const [curUser, setCurUser] = useState<user>()
+    const onClickUser = useCallback((tempCurUser: user) => {
+        onOpen();
+        setCurUser(tempCurUser)
+    }, []);
 
     return (
         <>
@@ -25,11 +44,14 @@ export const UserManagement = memo(() => {
                             <UserCard
                                 imageUrl="https://source.unsplash.com/random"
                                 userName={user.username}
-                                userFullName={user.name} />
+                                userFullName={user.name}
+                                onClick={() => onClickUser(user)}
+                            />
                         </WrapItem>
                     )}
                 </Wrap>
             )}
+            <UserDetail isOpen={isOpen} onClose={onClose} curUser={curUser} />
         </>
 
     )
