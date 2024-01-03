@@ -12,11 +12,11 @@ import { HeaderLayout } from '../template/HeaderLayout';
 export const router = createBrowserRouter([
     {
         path: "/",
-        element: <HeaderLayout><Home /></HeaderLayout>,
+        element: <Login />,
         errorElement: <Page404 />
     },
     {
-        path: "home",
+        path: "/home",
         element: <HeaderLayout><Home /></HeaderLayout>,
         children: [
             {
@@ -27,7 +27,7 @@ export const router = createBrowserRouter([
     },
     {
         path: "/settings",
-        element: <Setting />
+        element: <HeaderLayout><Setting /></HeaderLayout>
     },
 
 ])

@@ -16,15 +16,10 @@ import { router } from './components/route/Router';
 function App() {
   return (
     <>
-      <RouterProvider router={router} />
       <ChakraProvider theme={theme}>
-        <Login />
-        <Button colorScheme="teal" >Button</Button>
-        <p>AAAA</p>
+        <RouterProvider router={router} />
       </ChakraProvider >
     </>
-
-
   )
 }
 export default App;

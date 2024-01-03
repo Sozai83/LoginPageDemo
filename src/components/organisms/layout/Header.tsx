@@ -15,7 +15,7 @@ export const Header: FC = memo(() => {
     const onClickSettings = useCallback(() => navigate('/settings'), [])
 
     return (
-        <ChakraProvider>
+        <>
             <Flex
                 as="nav"
                 bg="teal.500"
@@ -56,7 +56,6 @@ export const Header: FC = memo(() => {
                 onClickUser={onClickUser}
                 onClickSettings={onClickSettings}
             />
-        </ChakraProvider >
-
+        </>
     )
 })
