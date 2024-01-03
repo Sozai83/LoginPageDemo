@@ -15,20 +15,26 @@ import {
 } from '@chakra-ui/react';
 import { UserDetail } from '../organisms/user/UserDetail'
 import { user } from '../../types/api/user';
+import { useLoginUser } from '../../hooks/useLoginUser';
 
 
 
 export const UserManagement = memo(() => {
 
     const { getUsers, loading, users } = useAllUsers();
-    useEffect(() => getUsers(), [])
 
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [curUser, setCurUser] = useState<user>()
+
     const onClickUser = useCallback((tempCurUser: user) => {
         onOpen();
         setCurUser(tempCurUser)
     }, []);
+
+    const { loginUser } = useLoginUser();
+    const isAdmin = loginUser ? loginUser.isAdmin : false;
+
+    useEffect(() => getUsers(), [])
 
     return (
         <>
@@ -37,8 +43,7 @@ export const UserManagement = memo(() => {
                     <Spinner />
                 </Center>
             ) : (
-                <Wrap p={{ base: 4, md: 10 }}>
-
+                    <Wrap p={{ base: 4, md: 10 }}>
                     {users?.map((user) =>
                         <WrapItem key={user.id} mx="auto">
                             <UserCard
@@ -51,7 +56,7 @@ export const UserManagement = memo(() => {
                     )}
                 </Wrap>
             )}
-            <UserDetail isOpen={isOpen} onClose={onClose} curUser={curUser} />
+            <UserDetail isOpen={isOpen} onClose={onClose} curUser={curUser!} isAdmin={isAdmin} />
         </>
 
     )

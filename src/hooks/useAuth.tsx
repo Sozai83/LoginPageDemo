@@ -3,12 +3,14 @@ import axios from 'axios'
 import { user } from "../types/api/user"
 import { useNavigate } from "react-router-dom"
 import { useMessage } from "./useMessage"
+import { useLoginUser } from "./useLoginUser"
 
 export const useAuth = () => {
 
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate();
     const showMessage = useMessage()
+    const { setLoginUser } = useLoginUser();
 
 
     const login = useCallback((id: string) => {
@@ -18,7 +20,9 @@ export const useAuth = () => {
                 if (res.data) {
                     setTimeout(() => {
                         navigate('/home')
-                        showMessage({ title: 'Login Successful', status: 'success' })
+                        const isAdmin = res.data.id === 10 ? true : false
+                        setLoginUser({ ...res.data, isAdmin })
+                        showMessage({ title: `Login Successful. You are logged in as ${res.data.username}.`, status: 'success' })
                     }, 2000)
                 }
                 else {

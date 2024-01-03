@@ -1,7 +1,5 @@
-import axios from "axios";
 import { useState, useCallback } from "react";
 import { user } from "../types/api/user";
-import { useMessage } from "./useMessage";
 
 type Props = {
     id: number;
